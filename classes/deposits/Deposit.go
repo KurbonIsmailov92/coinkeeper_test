@@ -1,5 +1,9 @@
 package deposit
 
+type Deposits interface {
+	DepositPercentCouner()
+}
+
 type Deposit struct {
 	Name       string
 	DestAmount float64
@@ -9,12 +13,12 @@ type Deposit struct {
 
 func NewDeposit(name string, destination, balance float64) *Deposit {
 	return &Deposit{
-		Name: name,
+		Name:       name,
 		DestAmount: destination,
-		Balance: balance,
+		Balance:    balance,
 	}
 }
-func (d *Deposit) DepositPercentCouner(Deposit) *Deposit{
+func (d *Deposit) DepositPercentCouner(Deposit) *Deposit {
 	d.Percent = d.Balance / d.DestAmount * 100
 	return &Deposit{}
 

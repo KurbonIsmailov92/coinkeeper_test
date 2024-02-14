@@ -3,7 +3,6 @@ package budjet
 import (
 	"database/sql"
 	"fmt"
-	"time"
 )
 
 type Budjet struct {
@@ -62,7 +61,7 @@ func (b *Budjet) NewBudjetInserterToDb(newBudjet Budjet) *Budjet {
 	}
 	defer Db.Close()
 
-	insert, err := Db.Query(fmt.Sprintf("INSERT INTO budjets (name, balance, is_credit, in_total_sum, created_at) VALUES('%s','%d','%t','%t','%s')", newBudjet.Name, newBudjet.Balance, newBudjet.IsCredit, newBudjet.IsTotalSum, time.Now().IsDST()))
+	insert, err := Db.Query(fmt.Sprintf("INSERT INTO budjets (name, balance, is_credit, in_total_sum, created_at) VALUES('%s','%d','%t','%t')", newBudjet.Name, newBudjet.Balance, newBudjet.IsCredit, newBudjet.IsTotalSum))
 	if err != nil {
 		panic(err)
 	}
@@ -71,3 +70,4 @@ func (b *Budjet) NewBudjetInserterToDb(newBudjet Budjet) *Budjet {
 
 	return &Budjet{} 
 }
+
